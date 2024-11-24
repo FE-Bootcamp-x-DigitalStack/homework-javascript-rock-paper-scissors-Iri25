@@ -6,38 +6,30 @@ const scissorButton = document.querySelector(".far.fa-hand-scissors");
 
 const optionsGame = ["rock", "paper", "scissors"];
 
-function playGame(playerChoise) {
+function playGame(playerChoice) {
   const randomIndex = Math.floor(Math.random() * optionsGame.length);
-  const computerChoise = optionsGame[randomIndex];
+  const computerChoice = optionsGame[randomIndex];
+
+  const playerChoiseCapitalize =
+    String(playerChoice[0]).toUpperCase() + String(playerChoice).slice(1);
 
   let message = "";
 
-  if (playerChoise === "rock" && computerChoise === "rock")
-    message = "It's a draw! You both chose rock.";
-
-  if (playerChoise === "paper" && computerChoise === "paper")
-    message = "It's a draw! You both chose paper.";
-
-  if (playerChoise === "scissors" && computerChoise === "scissors")
-    message = "It's a draw! You both chose scissors.";
-
-  if (playerChoise === "rock" && computerChoise === "paper")
-    message = "Sorry, the computer won! Paper beats rock!";
-
-  if (playerChoise === "rock" && computerChoise === "scissors")
-    message = "Congratulations, you won! Rock beats scissors!";
-
-  if (playerChoise === "paper" && computerChoise === "rock")
-    message = "Congratulations, you won! Paper beats rock!";
-
-  if (playerChoise === "paper" && computerChoise === "scissors")
-    message = "Sorry, the computer won! Scissors beats paper!";
-
-  if (playerChoise === "scissors" && computerChoise === "rock")
-    message = "Sorry, the computer won! Rock beats scissors!";
-
-  if (playerChoise === "scissors" && computerChoise === "paper")
-    message = "Congratulations, you won! Scissors beats paper!";
+  if (playerChoice === computerChoice)
+    message = `It's a draw! You both chose ${playerChoice}.`;
+  else if (
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper")
+  ) {
+    message = `Congratulations, you won! ${playerChoiseCapitalize} beats ${computerChoice}!`;
+  } else if (
+    (playerChoice === "rock" && computerChoice === "paper") ||
+    (playerChoice === "paper" && computerChoice === "scissors") ||
+    (playerChoice === "scissors" && computerChoice === "rock")
+  ) {
+    message = `Sorry, the computer won! ${playerChoiseCapitalize} beats ${computerChoice}!`;
+  }
 
   if (!message) {
     message = "Something went wrong. Please try again!";
