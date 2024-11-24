@@ -1,9 +1,14 @@
+.extended-game {
+  margin-top: 64px;
+}
+
 .far {
   font-size: 1.5em;
   padding-inline: 0.5em;
 }
 
-#result {
+#game-result,
+#extended-game-result {
   font-size: 1.25em;
   font-weight: bold;
   margin-top: 8px;
